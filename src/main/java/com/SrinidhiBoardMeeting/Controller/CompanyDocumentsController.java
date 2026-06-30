@@ -67,4 +67,9 @@ public class CompanyDocumentsController {
 		return companyDocumentsService.download(documentId);
 	}
 
+	@GetMapping("/getByCompany/{companyId}")
+	public List<companyDocuments> getByCompanyId(@PathVariable Long companyId) {
+		return companyDocumentsService.getByCompanyId(companyId);
+	}
+
 }

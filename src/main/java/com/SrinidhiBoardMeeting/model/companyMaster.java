@@ -27,7 +27,7 @@ public class companyMaster extends BaseEntity  {
 	private String country;
 	private String companySecretaryName;
 	private String secretaryContactNo;
-	private String SecretaryEmail;
+	private String secretaryEmail;
 	@Lob
 	private String registeredAddress;
 	

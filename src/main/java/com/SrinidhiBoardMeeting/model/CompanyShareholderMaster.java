@@ -25,7 +25,7 @@ public class CompanyShareholderMaster extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
 	private Long shareHolderId;
-
+//testdd 
 	@Column(name = "company_id")
 	private Long companyId;
 

@@ -13,5 +13,5 @@ public interface CompanyShareholderMasterRepo
 		extends JpaRepository<CompanyShareholderMaster, Long>, JpaSpecificationExecutor<CompanyShareholderMaster> {
 
 	List<CompanyShareholderMaster> findByIsActiveTrue();
-
+	List<CompanyShareholderMaster> findByCompanyIdAndIsActiveTrue(Long companyId);
 }

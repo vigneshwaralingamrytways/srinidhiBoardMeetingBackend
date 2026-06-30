@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.SrinidhiBoardMeeting.Repo.CompanyMasterRepo;
+import com.SrinidhiBoardMeeting.model.CompanyDirectors;
 import com.SrinidhiBoardMeeting.model.companyMaster;
 
 @Service
@@ -29,7 +30,10 @@ public class CompanyMasterService {
 
 	public companyMaster update(Long id, companyMaster company) {
 
-		companyMaster old = getById(id);
+//		companyMaster old = getById(id);
+
+		companyMaster old = companyMasterRepo.findById(id)
+				.orElseThrow(() -> new RuntimeException("Company not found : " + id));
 
 		old.setCompanyName(company.getCompanyName());
 		old.setAvatar(company.getAvatar());
@@ -63,4 +67,7 @@ public class CompanyMasterService {
 			return e.getMessage();
 		}
 	}
+//	public void getAllActiveShareholder(Long companyId) {
+//		
+//	}
 }

@@ -1,7 +1,5 @@
 package com.SrinidhiBoardMeeting.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +13,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.SrinidhiBoardMeeting.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -30,11 +28,10 @@ public class companyDocuments extends BaseEntity {
 	private Long companyId;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "company_id",nullable=false, insertable = false, updatable = false)
+	@JoinColumn(name = "company_id", nullable = false, insertable = false, updatable = false)
 	private companyMaster companyMaster;
 	private String documentType;
-	
-	
+
 	private String fileName;
 	private String extention;
 	private String fileSize;
@@ -43,6 +40,7 @@ public class companyDocuments extends BaseEntity {
 	private String filePath;
 //	private LocalDate uploadedDate;
 	@Transient
+	@JsonIgnore
 	private MultipartFile file;
 
 //	private boolean isActive = true;

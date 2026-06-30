@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +36,25 @@ public class CompanyDirectorsController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> delete(@PathVariable Long id) {
 		return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+	}
+
+	@GetMapping("/getAllDirectorsByCompanyActive/{companyId}")
+	public ResponseEntity<List<CompanyDirectors>> getActiveByCompanyId(@PathVariable Long companyId) {
+		return new ResponseEntity<>(service.getActiveByCompanyId(companyId), HttpStatus.OK);
+	}
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CompanyDirectors director) {
+
+		try {
+
+			CompanyDirectors updated = service.update(id, director);
+
+			return ResponseEntity.ok(updated);
+
+		} catch (Exception e) {
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
 	}
 }

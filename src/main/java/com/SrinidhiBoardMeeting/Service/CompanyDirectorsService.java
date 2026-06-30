@@ -38,4 +38,33 @@ public class CompanyDirectorsService {
 		}
 	}
 
+	public List<CompanyDirectors> getActiveByCompanyId(Long companyId) {
+		return companyDirectorsRepo.findByCompanyIdAndIsActiveTrue(companyId);
+	}
+
+	public CompanyDirectors update(Long id, CompanyDirectors director) {
+
+		CompanyDirectors old = companyDirectorsRepo.findById(id)
+				.orElseThrow(() -> new RuntimeException("Director not found : " + id));
+
+		old.setCompanyId(director.getCompanyId());
+		old.setBoardMemberId(director.getBoardMemberId());
+
+		old.setCompanyDirectorName(director.getCompanyDirectorName());
+		old.setDin(director.getDin());
+		old.setPosition(director.getPosition());
+
+		old.setDateOfJoining(director.getDateOfJoining());
+
+		old.setEmailId(director.getEmailId());
+		old.setContactNo(director.getContactNo());
+
+		old.setLeavingDate(director.getLeavingDate());
+		old.setLeavingReason(director.getLeavingReason());
+
+		old.setActive(director.isActive());
+
+		return companyDirectorsRepo.save(old);
+	}
+
 }

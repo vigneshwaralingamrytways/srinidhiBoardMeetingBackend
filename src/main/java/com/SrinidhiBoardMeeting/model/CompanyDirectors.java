@@ -37,7 +37,7 @@ public class CompanyDirectors extends BaseEntity  {
 	private Long boardMemberId;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "boardMemberId",nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "boardMemberId",insertable = false, updatable = false)
 	private BoardMember BoardMember;
 	private String companyDirectorName; // Store the director Id
 	private String din;

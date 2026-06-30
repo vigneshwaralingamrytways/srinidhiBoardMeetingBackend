@@ -13,5 +13,5 @@ public interface CompanyDirectorsRepo
 		extends JpaRepository<CompanyDirectors, Long>, JpaSpecificationExecutor<CompanyDirectors> {
 
 	List<CompanyDirectors> findByIsActiveTrue();
-
+	List<CompanyDirectors> findByCompanyIdAndIsActiveTrue(Long companyId);
 }

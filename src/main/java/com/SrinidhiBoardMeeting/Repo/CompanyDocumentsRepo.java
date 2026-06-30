@@ -11,6 +11,11 @@ import com.SrinidhiBoardMeeting.model.companyDocuments;
 @Repository
 public interface CompanyDocumentsRepo extends JpaRepository<companyDocuments, Long>, JpaSpecificationExecutor<companyDocuments> {
 
+	List<companyDocuments> findByCompanyId(Long companyId);
+	boolean existsByGeneratedFileName(String generatedFileName);
+	
+	
+
 //	List<companyDocuments> findAllIsActiveTrue();
 
 }

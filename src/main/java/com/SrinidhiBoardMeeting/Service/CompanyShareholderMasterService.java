@@ -37,4 +37,21 @@ public class CompanyShareholderMasterService {
 			return e.getMessage();
 		}
 	}
+	public List<CompanyShareholderMaster> getActiveByCompanyId(Long companyId) {
+        return companyShareholderMasterRepo.findByCompanyIdAndIsActiveTrue(companyId);
+    }
+	public CompanyShareholderMaster update(Long id, CompanyShareholderMaster shareholder) {
+
+		CompanyShareholderMaster old = companyShareholderMasterRepo.findById(id)
+				.orElseThrow(() -> new RuntimeException("Shareholder not found : " + id));
+
+		old.setCompanyId(shareholder.getCompanyId());
+		old.setShareHolderName(shareholder.getShareHolderName());
+		old.setNoOfShares(shareholder.getNoOfShares());
+		old.setShareHolderType(shareholder.getShareHolderType());
+		old.setDateOfIssueShares(shareholder.getDateOfIssueShares());
+		old.setActive(shareholder.isActive());
+
+		return companyShareholderMasterRepo.save(old);
+	}
 }
